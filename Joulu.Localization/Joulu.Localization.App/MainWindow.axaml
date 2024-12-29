@@ -1,0 +1,35 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Joulu.Localization.App"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Joulu.Localization.App.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Joulu.Localization.App">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <StackPanel Margin="10">
+        <StackPanel Orientation="Horizontal" Spacing="20">
+            <TextBlock Text="{Binding Greeting}" VerticalAlignment="Center" />
+            <Button Command="{Binding IncreaseCommand}">Add</Button>
+        </StackPanel>
+        <Button Command="{Binding AddFileCommand}">Add File</Button>
+        <DataGrid ItemsSource="{Binding SelectedFiles}" 
+                  AutoGenerateColumns="False"
+                  VerticalAlignment="Stretch"
+                  Height="500" 
+                  HeadersVisibility="All">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="File" Binding="{Binding Path}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Sections}" Width="Auto"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</Window>
